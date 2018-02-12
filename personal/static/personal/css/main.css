@@ -28,8 +28,8 @@ header#header {
     color: #fff; }
   header#header .wrapper-login {
     float: right;
-    width: 30%;
-    margin-left: auto;
+    /* width: 30%; */
+    /* margin-left: auto; */
     text-align: right; }
     header#header .wrapper-login a {
       margin-left: 2rem; }
@@ -40,16 +40,18 @@ header#header {
   height: 100vh;
   position: fixed;
   float: left;
-  font-size: 1.7rem;
-  width: 250px;
+  font-size: 1.5rem;
+  /* width: 150px; */
   margin-right: auto; }
   #navigation ul {
     padding: 0;
-    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
     margin: 0;
     list-style-type: none; }
     #navigation ul li {
-      padding: 1rem 0; }
+      padding: 1rem 0;}
       #navigation ul li a {
         color: #fff; }
 
@@ -58,6 +60,11 @@ header#header {
   min-width: 100%; }
 
 #content {
-  padding-left: 270px;
-  padding-top: 10px;
-}
+  margin-right: auto;
+  position: static;
+  padding-left: 170px;
+  padding-top: 10px; }
+  #content img {
+    width: 60px;
+    height: 60px;
+  }
