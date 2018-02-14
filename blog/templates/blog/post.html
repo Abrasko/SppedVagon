@@ -1,6 +1,15 @@
 {% extends "personal/header.html" %}
 {% block content %}
+    
     <h3>{{post.title}}</h3>
     <h6>on {{post.date}}</h6>
     {{post.body|safe|linebreaks}}
+    
+    <br><p>Comments:</p>
+    {% for comment in latest_comment_list %}
+    <h5>{{comment.date|date:"Y-m-d" }}</h5>
+    <h3>{{comment.user_name}}</h3>
+    {{comment.body|safe|linebreaks}}
+    {% endfor %}
+
 {% endblock %}
