@@ -8,7 +8,7 @@
     <br><p>Comments:</p>
     {% for comment in latest_comment_list %}
     <h5>{{comment.date|date:"Y-m-d" }}</h5>
-    <h3>{{comment.user_name}}</h3>
+    <h2>{{comment.user_name}}</h2>
     {{comment.body|safe|linebreaks}}
     {% endfor %}
 
