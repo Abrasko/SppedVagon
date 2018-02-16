@@ -26,10 +26,7 @@ SECRET_KEY = ')7)sah=%$%*$9=b$^u%gb+i*lot1mri#@58aa$=@9c&7lvjowc'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'mysite',
-    '192.168.0.101',
     'localhost',
-    '37.147.79.102',
 ]
 
 
