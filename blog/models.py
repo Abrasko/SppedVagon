@@ -4,6 +4,8 @@ from django.utils import timezone
 
 # Create your models here.
 
+#надстройка над классом сделать
+
 class Post(models.Model):
     title = models.CharField(max_length=1000) 
     body = models.TextField()
