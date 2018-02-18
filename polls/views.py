@@ -7,6 +7,7 @@ def index(request):
     template = 'polls/index.html'
     context = {'latest_question_list': latest_quetions_list,
     }
+    ###
     return render(request, template, context)
 
 def detail(request, question_id):
