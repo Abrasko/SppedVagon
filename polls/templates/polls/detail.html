@@ -1,12 +1,12 @@
 {% extends "personal/header.html" %}
 {% block content %}
-    <h2>{{ question.question_text }}</h2>
+    <h2>{{ question_detail.question_text }}</h2>
     {% if error_message %}
         <p><strong>{{error_message }}</strong></p>
     {% endif %}
-    <form action="{% url 'polls:vote' question.id %}" method="post">
+    <form action="{% url 'polls:vote' question_detail.id %}" method="post">
         {% csrf_token %}
-        {% for choice in question.choice_set.all %}
+        {% for choice in question_detail.choice_set.all %}
             <input type="radio" name="choice" id="choice{{ forloop.counter }}"
             value="{{choice.id}}" />
             <label for="choice{{ forloop.counter }}">
