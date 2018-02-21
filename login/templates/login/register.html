@@ -1,0 +1,23 @@
+{% extends "personal/header.html" %}
+{% block content %}
+
+    {% if error_message %}
+    <p><strong>{{error_message}}</strong></p>
+    {% endif %}
+
+    <form action="{% url 'login:start_registration' %}" method="post">
+        {% csrf_token %}
+        User_name:
+        <br>
+        <input type="text" name="user_name"><br>
+        email:
+        <br>
+        <input type="text" name="user_email"><br>
+        Password:
+        <br>
+        <input type="password" name="password"><br>
+        <br>
+        <input type="submit" value="Submit">
+        <!-- <input type="password" name="password_check" id="id_password_check"/> -->
+    </form>
+{% endblock %}

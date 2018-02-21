@@ -1,0 +1,33 @@
+{% extends "personal/header.html" %}
+{% block content %}
+
+    {% if error_message %}
+    <p><strong>{{error_message}}</strong></p>
+    {% endif %}
+
+    {% if Is_login %}
+    Hello, {{user_name}}!<br/>
+    <a href="{% url 'login:call_logout' %}">Logout</a>
+    {% else %}
+        <!-- {% if bye_message %}
+        <p>{{ bye_message }}</p>
+        {% endif %} -->
+        <form action="{% url 'login:call_login' %}" method="post">
+            {% csrf_token %}
+            Login:<br/> 
+            <input type="text" name="user_name" id="user_name" value=
+            "{% if user_name %}{{user_name}}{% endif %}"
+            />
+            <br/>
+            Password: <br/>
+            <input type="password" name="password" id="password"/>
+            <br/>
+            <input type="submit" value="Login" />
+        </form>
+        <a href="{% url 'login:call_registration' %}">
+            <input type="button" value="Register" />            
+        </a>
+        
+    {% endif %}
+
+{% endblock %}
