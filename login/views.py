@@ -40,13 +40,14 @@ def start_registration(request):
         password = request.POST['password']
         user_email = request.POST['user_email']
 
+        User.objects
         user = User.objects.create_user(user_name, user_email, password)
         # user.save()
 
-    except:
+    except Exception as err:
         return render(request, 'login/register.html', {
             'user_name' :       user_name,
-            'error_message':    'Error (sorry wery vell)',
+            'error_message':    err,
             #add params чтобы заного не вводить
     })
     else:
