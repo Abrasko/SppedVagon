@@ -9,14 +9,18 @@
         {% csrf_token %}
         User_name:
         <br>
-        <input type="text" name="user_name"><br>
+        <input type="text" name="user_name" value=
+        "{% if user_name %}{{user_name}}{% endif %}"><br>
         email:
         <br>
-        <input type="text" name="user_email"><br>
+        <input type="text" name="user_email" value=
+        "{% if user_email %}{{user_email}}{% endif %}"><br>
         Password:
         <br>
         <input type="password" name="password"><br>
+        Password again:
         <br>
+        <input type="password" name="password_confirm"><br>
         <input type="submit" value="Submit">
         <!-- <input type="password" name="password_check" id="id_password_check"/> -->
     </form>
