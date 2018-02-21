@@ -39,15 +39,27 @@ def start_registration(request):
         user_name = request.POST['user_name']
         password = request.POST['password']
         user_email = request.POST['user_email']
+<<<<<<< HEAD
 
         User.objects
+=======
+        password_confirm = request.POST['password_confirm']
+        if password != password_confirm:
+            raise PasswordConfirmError
+            #add error description
+>>>>>>> 3bac824e834431fa361387cc1ee12414f6ce1ee7
         user = User.objects.create_user(user_name, user_email, password)
         # user.save()
 
     except Exception as err:
         return render(request, 'login/register.html', {
             'user_name' :       user_name,
+<<<<<<< HEAD
             'error_message':    err,
+=======
+            'user_email':       user_email,
+            'error_message':    'Error (sorry wery vell)',
+>>>>>>> 3bac824e834431fa361387cc1ee12414f6ce1ee7
             #add params чтобы заного не вводить
     })
     else:
