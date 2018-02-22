@@ -1,16 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth.models import User
+from login.models import User_based as User
+
+from login.registration_errors import *
 # Create your views here.
 
 def index(request):
     return render(request, 'login/index.html')
 
 def call_login(request):
-    user_name = request.POST['user_name']
+    user_name = request.POST['user_name'].lower()
     password = request.POST['password']
+    
     user = authenticate(request, username=user_name, password=password)
     if user is not None:
         login(request, user)
@@ -29,28 +32,31 @@ def call_logout(request):
 #     return HttpResponseRedirect(reverse('login:index', kwargs={ 
 #     'bye_message':    'See you!'
 # }))
-    return HttpResponseRedirect(reverse('login:index'))
+    return redirect(reverse('login:index'))
 
 def call_registration(request):
     return render(request, 'login/register.html')
 
 def start_registration(request):
     try:
-        user_name = request.POST['user_name']
+        public_name = request.POST['public_name']
+        user_name = request.POST['user_name'].lower()
         password = request.POST['password']
         user_email = request.POST['user_email']
 
-        user = User.objects.create_user(user_name, user_email, password)
-        # user.save()
+        check_unique_user_name(user_name)
+        check_unique_user_email(user_email)
+        check_for_error(user_name, public_name, user_email, password)
+
+        User.objects.create(user_name = user_name, user_email = user_email,
+        password = password, public_name = public_name)
 
     except Exception as err:
         return render(request, 'login/register.html', {
             'user_name' :       user_name,
             'user_email':       user_email,
-            'error_message':    'Error (sorry wery vell)',
+            'public_name':      public_name,
+            'error_message':    err,
             #add params чтобы заного не вводить
     })
-    else:
-        #разобраться с передачей параметров при редирректе
-        return HttpResponseRedirect(reverse('login:index'))
     

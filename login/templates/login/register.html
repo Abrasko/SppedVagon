@@ -7,10 +7,14 @@
 
     <form action="{% url 'login:start_registration' %}" method="post">
         {% csrf_token %}
-        User_name:
+        User name:
         <br>
         <input type="text" name="user_name" value=
         "{% if user_name %}{{user_name}}{% endif %}"><br>
+        Public name:
+        <br>
+        <input type="text" name="public_name" value=
+        "{% if public_name %}{{public_name}}{% endif %}"><br>
         email:
         <br>
         <input type="text" name="user_email" value=
