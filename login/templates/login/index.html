@@ -5,8 +5,8 @@
     <p><strong>{{error_message}}</strong></p>
     {% endif %}
 
-    {% if Is_login %}
-    Hello, {{user_name}}!<br/>
+    {% if user.is_authenticated %}
+    Hello, {{user.public_name}}!<br/>
     <a href="{% url 'login:call_logout' %}">Logout</a>
     {% else %}
         <!-- {% if bye_message %}

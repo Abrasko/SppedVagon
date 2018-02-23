@@ -17,9 +17,11 @@ def call_login(request):
     user = authenticate(request, username=user_name, password=password)
     if user is not None:
         login(request, user)
+        public_name = user.public_name
         return render(request, 'login/index.html', {   
-            'user_name':        user_name,
-            'Is_login':    True,
+            'public_name':      public_name,
+            'Is_login':         True,
+            'user':             user,
         })
     else:
         return render(request, 'login/index.html', {   
@@ -48,8 +50,7 @@ def start_registration(request):
         check_unique_user_email(user_email)
         check_for_error(user_name, public_name, user_email, password)
 
-        User.objects.create(user_name = user_name, user_email = user_email,
-        password = password, public_name = public_name)
+        User.objects.create_user(user_name, user_email, public_name, password)
 
     except Exception as err:
         return render(request, 'login/register.html', {

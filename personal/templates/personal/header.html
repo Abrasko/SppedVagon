@@ -13,8 +13,13 @@
 		<header id="header">
 			<p>ooo my!</p>
 			<div class="wrapper-login">
-				<a href="{% url 'login:index' %}">Вход</a>
-				<a href="{% url 'login:call_registration' %}">Регистрация</a>
+				{% if user.is_authenticated %}
+					<a href="{% url 'home:index' %}">{{user.public_name}}</a>
+					<a href="{% url 'login:call_logout' %}">Logout</a>
+				{% else %}
+					<a href="{% url 'login:index' %}">Вход</a>
+					<a href="{% url 'login:call_registration' %}">Регистрация</a>
+				{% endif %}
 			</div>
 		</header>
 		<section id="wrapper-body-content">
