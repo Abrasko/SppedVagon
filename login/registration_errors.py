@@ -49,7 +49,7 @@ def check_for_error(user_name='Pidor', public_name='Default', user_email='Defaul
     if user_name.isalnum() == False:
         raise DisallowedSymbolsInNameExc
     
-    if password.__len__ < 6:
+    if password.__len__() < 4:
         raise ShortLengthOfPasswordExc
     
     if '@' not in parseaddr(user_email)[1]:

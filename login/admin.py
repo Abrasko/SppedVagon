@@ -35,7 +35,7 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(
         label=("Password"),
         help_text=(
-            "<a href=\"/password/\">Change password</a>."
+            "<a href=\"../password/\">Change password</a>."
         ),
     )
 

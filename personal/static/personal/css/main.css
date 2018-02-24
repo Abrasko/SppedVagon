@@ -68,3 +68,12 @@ header#header {
     width: 60px;
     height: 60px;
   }
+/* наследование от content */
+  #content-no-left {
+    margin-right: auto;
+    position: static;
+    padding-top: 100px; }
+    #content img {
+      width: 60px;
+      height: 60px;
+    }

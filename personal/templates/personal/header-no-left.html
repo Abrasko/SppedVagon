@@ -23,15 +23,6 @@
 			</div>
 		</header>
 		<section id="wrapper-body-content">
-			<nav id="navigation">
-				<ul>
-					<li><a href="{% url 'home:index' %}">Главная</a></li>
-					<li><a href="/blog">Общий раздел</a></li>
-					<li><a href="{% url 'polls:index' %}">Выборы 18.03</a></li>
-					<li><a href="/admin">Новый контент</a></li>
-					<li><a href="/polls">Опросы</a></li>
-				</ul>
-			</nav>
 			<section id="content">
 				{% block content %}
 				{% endblock %}

@@ -60,4 +60,6 @@ def start_registration(request):
             'error_message':    err,
             #add params чтобы заного не вводить
     })
+    else:
+        return redirect(reverse('login:index'))
     
