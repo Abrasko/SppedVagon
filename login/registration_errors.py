@@ -52,10 +52,11 @@ def check_for_error(user_name='Pidor', public_name='Default', user_email='Defaul
     if password.__len__() < 4:
         raise ShortLengthOfPasswordExc
     
-    if '@' not in parseaddr(user_email)[1]:
+    if '@' not in user_email:
         raise NotProperEmailExc
 
-def check_unique_user_name(user_name):
+def check_unique_user_name(original_user_name):
+    user_name = original_user_name.lower()
     try:
         User.objects.get(user_name = user_name)
     except User.DoesNotExist:
@@ -66,7 +67,8 @@ def check_unique_user_name(user_name):
         raise NotUniqueUsernameExc
 
 
-def check_unique_user_email(user_email):
+def check_unique_user_email(original_user_email):
+    user_email = original_user_email.lower()
     try:
         User.objects.get(user_email = user_email)
     except User.DoesNotExist:
