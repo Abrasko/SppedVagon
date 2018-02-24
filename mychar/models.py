@@ -12,4 +12,8 @@ class ProfileParams(models.Model):
 
     date_of_birth = models.DateField('date of birth')
     city = models.CharField(max_length=200)
-    subscribe_list = []
+    subscribe_list = {}
+    settings_list = {}
+
+    def __str__(self):
+        return subscribe_list
