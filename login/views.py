@@ -6,6 +6,9 @@ from login.models import User_based as User
 from django.contrib.auth.decorators import login_required
 
 from login.registration_errors import *
+from login.skillsdict import *
+
+from mychar.models import ProfileParams
 # Create your views here.
 
 def user_login(request, original_user_name, password):
@@ -72,16 +75,42 @@ def start_registration(request):
                 'user_email':       original_user_email,
                 'public_name':      public_name,
                 'error_message':    err,
-        })
+            })
         else:
             return render(request, 'login/change_skills.html', {
                 'user':             user,
-        })
+            })
     else:
         return redirect(reverse('home:index'))
 
+
+##просто код  - даже еще не запускал
 @login_required(login_url='/login/')
 def change_skills(request):
-    pass
+    try:
+        #есть какой то пост запрос
+        # skills_dict - ключ skill_id, уровень скила пользователя
+        request_dict = request.POST.dict()
+        skills_dict = {}
+        user = request.user
+        for skill_id in request_dict:
+            skills_dict[skill_id] = request_dict[skill_id]
+        
+        user.profileparams_set.create(skills_dict=skills_dict)
+    
+    except Exception as err:
+        return render(request, 'login/change_skills.html', {
+            'user':             user,
+            'err':              err
+        })
+    else:
+        return redirect(reverse('mychar:char'))
+
+
+
+
+
+    
+
 
     
