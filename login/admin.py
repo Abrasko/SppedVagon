@@ -5,7 +5,17 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User_based as User
+from mychar.models import ProfileParams
 # Register your models here.
+
+class ProfileParamsInline(admin.TabularInline):
+    model = ProfileParams
+    extra = 1
+
+    # inlines = [ChoiceInline]
+    # list_display = ('question_text', 'date', 'was_published_recently')
+    # list_filter = ['date']
+    # search_fields = ['question_text']
 
 class UserCreationForm(forms.ModelForm):
 
@@ -16,7 +26,7 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('user_name', 'user_email', 'public_name')
-
+        
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -69,6 +79,8 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('user_name',)
     ordering = ('user_name',)
     filter_horizontal = ()
+
+
 
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
