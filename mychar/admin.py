@@ -9,7 +9,6 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import SkillsList, ProfileParams
 # Register your models here.
 
-<<<<<<< HEAD
 class CommentsInline(admin.TabularInline):
     model = CommentsBased
     extra = 1
@@ -30,7 +29,6 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(PostBased, PostAdmin)
 # admin.site.register(CommentsBased)
-=======
 class ProfileParamsChangeForm(forms.ModelForm):
     class Meta:
         model = ProfileParams
@@ -54,4 +52,3 @@ admin.site.register(ProfileParams, ProfileParamsAdmin)
 admin.site.register(SkillsList)
 # admin.site.register(ProfileParams)
 
->>>>>>> 2a3752844ce80360a4460ba257354c495cdc7e2f

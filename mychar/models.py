@@ -1,11 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-<<<<<<< HEAD
-=======
 
 # from login.models import User_based as User
->>>>>>> 2a3752844ce80360a4460ba257354c495cdc7e2f
 # Create your models here.
 
 
@@ -22,7 +19,6 @@ class ProfileParams(models.Model):
     skills_dict = {}
 
     def __str__(self):
-<<<<<<< HEAD
         return self.subscribe_list
 
 
@@ -47,7 +43,6 @@ class CommentsBased(models.Model):
     def __str__(self):
         return self.comment_text
 
-=======
         return str(self.subscribe_dict)
 
 class SkillsList(models.Model):
@@ -68,4 +63,3 @@ class SkillsList(models.Model):
 
         skill.save(using=self._db)
         
->>>>>>> 2a3752844ce80360a4460ba257354c495cdc7e2f
