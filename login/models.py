@@ -4,12 +4,13 @@ from django.contrib.auth.models import (
     BaseUserManager,
 )
 
+from mychar.models import ProfileParams
+from django.utils import timezone
+
 #from login.registration_errors import *
 # Create your models here.
 class User_basedManager(BaseUserManager):
     def create_user(self, user_name, user_email, public_name, password=None):
-        user_name = user_name.lower()
-        user_email = user_email.lower()
         
         
         # check_unique_user_name(user_name)
@@ -17,13 +18,15 @@ class User_basedManager(BaseUserManager):
         # check_for_error(user_name, public_name, user_email, password)
 
         user = self.model(
-            user_name = user_name,
-            user_email = user_email,
+            user_name = user_name.lower(),
+            user_email = user_email.lower(),
             public_name = public_name,
         )
 
         user.set_password(password)
         user.save(using=self._db)
+        params = user.profileparams_set.create(holder = user)
+        params.save()       
         return user
 
     def create_superuser(self, user_name, user_email, public_name, password):
