@@ -11,6 +11,7 @@ class User_basedManager(BaseUserManager):
         user_name = user_name.lower()
         user_email = user_email.lower()
         
+        
         # check_unique_user_name(user_name)
         # check_unique_user_email(user_email)
         # check_for_error(user_name, public_name, user_email, password)
@@ -67,6 +68,3 @@ class User_based(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
-
-
-
