@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from login.registration_errors import *
 from login.skillsdict import *
 
-from mychar.models import ProfileParams
 # Create your views here.
 
 def user_login(request, original_user_name, password):
@@ -56,10 +55,10 @@ def start_registration(request):
     if not request.user.is_authenticated:
 
         try:
-            public_name = request.POST['public_name']
-            original_user_name = request.POST['user_name']
-            password = request.POST['password']
-            original_user_email = request.POST['user_email']
+            public_name             = request.POST['public_name']
+            original_user_name      = request.POST['user_name']
+            password                = request.POST['password']
+            original_user_email     = request.POST['user_email']
 
             check_unique_user_name(original_user_name)
             check_unique_user_email(original_user_email)
@@ -96,7 +95,7 @@ def change_skills(request):
         for skill_id in request_dict:
             skills_dict[skill_id] = request_dict[skill_id]
         
-        user.profileparams_set.create(skills_dict=skills_dict)
+        # user.profileparams_set.create(skills_dict=skills_dict)
     
     except Exception as err:
         return render(request, 'login/change_skills.html', {

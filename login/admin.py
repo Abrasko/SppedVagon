@@ -5,17 +5,24 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User_based as User
-from mychar.models import ProfileParams
 # Register your models here.
 
-class ProfileParamsInline(admin.TabularInline):
-    model = ProfileParams
-    extra = 1
+from mychar.models import UserSettingsList, UserSkillsList, UserSubscribesList
 
-    # inlines = [ChoiceInline]
-    # list_display = ('question_text', 'date', 'was_published_recently')
-    # list_filter = ['date']
-    # search_fields = ['question_text']
+class UserSettingsListInline(admin.TabularInline):
+    model = UserSettingsList
+    extra = 1
+    classes = ('collapse',)
+
+class UserSkillsListInline(admin.TabularInline):
+    model = UserSkillsList
+    extra = 1
+    classes = ('collapse',)
+
+class UserSubscribesListInline(admin.TabularInline):
+    model = UserSubscribesList
+    extra = 1
+    classes = ('collapse',)
 
 class UserCreationForm(forms.ModelForm):
 
@@ -51,8 +58,8 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('user_name', 'password', 'user_email', 'public_name',
-        'is_active', 'is_admin')
+        fields = ('user_name', 'original_user_name', 'password', 'user_email', 'public_name',
+        'is_active', 'is_admin', 'date_of_register', 'user_city')
 
     def clean_password(self):
         return self.initial["password"]
@@ -63,11 +70,17 @@ class UserAdmin(BaseUserAdmin):
 
     list_display = ('user_name', 'user_email', 'public_name', 'is_admin')
     list_filter = ('is_admin',)
+    # readonly_fields = ('user_name',)
     fieldsets = (
-        (None,              {'fields': ('user_name', 'password')}),
-        ('Personal info',   {'fields': ('public_name', 'user_email',)}),
-        ('Permissions',     {'fields': ('is_admin',)}),
+        (None,              {'fields': ('original_user_name', 'user_name', 'password')}),
+        ('Personal info',   {'fields': ('public_name', 'user_email', 'date_of_register', 'user_city', )}),
+        ('Permissions',     {'fields': ('is_admin', 'is_active',)}),
     )
+    inlines = [
+        UserSkillsListInline,
+        UserSubscribesListInline,
+        UserSettingsListInline,
+    ]
 
     add_fieldsets = (
         (None, {
@@ -79,8 +92,6 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('user_name',)
     ordering = ('user_name',)
     filter_horizontal = ()
-
-
 
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
