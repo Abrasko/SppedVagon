@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from login.models import User_based as User
-from mychar.models import ProfileParams
 # Create your views here.
 
 @login_required(login_url='/login/')

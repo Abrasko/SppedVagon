@@ -6,46 +6,36 @@ from django.utils import timezone
 # Create your models here.
 
 
-class ProfileParams(models.Model):
-    holder = models.ForeignKey(
+class BasePost(models.Model):
+    post_author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
+        on_delete = models.CASCADE,
     )
-
-    date_of_register = models.DateField(default=timezone.now())
-    city = models.CharField(max_length=200, default='None')
-    subscribe_dict = {}
-    settings_dict = {}
-    skills_dict = {}
-
-    def __str__(self):
-        return self.subscribe_list
-
-
-class PostBased(models.Model):
-    post_author = models.CharField(max_length=100)
-    post_text = models.CharField(max_length=1500)
-    post_date = models.DateTimeField(default=timezone.now())
+    post_text = models.TextField(max_length=2000)
+    post_date = models.DateTimeField('Post publication date')
 
     def __str__(self):
         return self.post_text
 
 
-class CommentsBased(models.Model):
+class BaseComment(models.Model):
     post = models.ForeignKey(
-        PostBased,
+        BasePost,
         on_delete = models.CASCADE,
     )
-    comment_author = models.CharField(max_length=100)
-    comment_text = models.CharField(max_length=1000)
-    comment_date = models.DateTimeField(default=timezone.now())
+    comment_author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE,
+    )
+    comment_text = models.TextField(max_length=1000)
+    comment_date = models.DateTimeField('Comment publication date')
 
     def __str__(self):
         return self.comment_text
 
         return str(self.subscribe_dict)
 
-class SkillsList(models.Model):
+class AllSkillsList(models.Model):
     skill_name = models.CharField(max_length=100, unique=True)
     skill_popularity = models.IntegerField()
     skill_id = models.CharField(max_length=100, unique=True)
@@ -63,3 +53,30 @@ class SkillsList(models.Model):
 
         skill.save(using=self._db)
         
+class UserSkillsList(models.Model):
+    holder = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE,
+    )
+
+    skill_id = models.CharField(max_length=100, unique=True)
+    skill_points = models.IntegerField()
+
+
+class UserSettingsList(models.Model):
+    holder = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE,
+    )
+    
+    setting_id = models.CharField(max_length=200, unique=True)
+    setting_value = models.FloatField()
+
+class UserSubscribesList(models.Model):
+    holder = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE,
+    )
+
+    subscribe_id = models.CharField(max_length=100)
+    subscribe_date = models.DateTimeField('date since subscribed')
