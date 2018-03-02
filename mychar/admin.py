@@ -1,10 +1,6 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import PostBased, CommentsBased
-=======
 from django import forms
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
->>>>>>> 2a3752844ce80360a4460ba257354c495cdc7e2f
 
 from .models import SkillsList, ProfileParams
 # Register your models here.
