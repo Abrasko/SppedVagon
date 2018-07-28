@@ -1,57 +1,31 @@
 from django.contrib import admin
-from .models import BasePost, BaseComment, AllSkillsList
+from .models import CharPost, CharPostComment, AllSkillsList
 from django import forms
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
+from login.models import User_based as User
+from mychar.models import UserSkillsList
 # Register your models here.
 
-class CommentsInline(admin.TabularInline):
-    model = BaseComment
+class CharPostCommentInline(admin.TabularInline):
+    model = CharPostComment
     extra = 1
 
-class PostAdmin(admin.ModelAdmin):
+class CharPostChangeForm(forms.ModelForm):
+    class Meta:
+        model = CharPost
+        fields = ('post_author', 'post_date', 'post_text')
+
+class CharPostAdmin(admin.ModelAdmin):
+    form = CharPostChangeForm
     fieldsets = [
         ('Post',                  {'fields':  ['post_author', 'post_text'] }),
         ('Date information',        {'fields':  ['post_date'],  }),
             ]
-    inlines = [CommentsInline]
+    inlines = [CharPostCommentInline]
     list_display = ('post_author', 'post_date')
     list_filter = ['post_date']
     search_fields = ['post_text']
-
-class PostAdminss(admin.ModelAdmin):
-    fieldsets = [
-        ('Post',                  {'fields':  ['post_author', 'post_text'] }),
-        ('Date information',        {'fields':  ['post_date'],  }),
-            ]
-    inlines = [CommentsInline]
-    list_display = ('post_author', 'post_date')
-    list_filter = ['post_date']
-    search_fields = ['post_text']
-
-# admin.site.register(CommentsBased)
-# class ProfileParamsChangeForm(forms.ModelForm):
-#     class Meta:
-#         model = ProfileParams
-#         fields = ('date_of_register', 'city')
-
-# class ProfileParamsAdmin(BaseUserAdmin):
-#     form = ProfileParamsChangeForm
-
-#     list_display = ('holder', 'date_of_register', 'city',)
-#     list_filter = ('holder',)
-
-#     fieldsets = (
-#         (None,              {'fields': ('date_of_register', 'city')}),
-#     )
-
-#     search_fields = ('holder',)
-#     ordering = ('holder',)
-#     filter_horizontal = ()
-
-
 
 admin.site.register(AllSkillsList)
-admin.site.register(BasePost, PostAdmin)
+admin.site.register(CharPost, CharPostAdmin)
 # admin.site.register(ProfileParams)
-

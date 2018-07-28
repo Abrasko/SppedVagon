@@ -1,16 +1,62 @@
 {% extends "personal/header.html" %}
 {% block content %}
+    <div class="page__left-column">
+    <div class="page__skill">
+        <div class="page__skill-content">
+        <p class="text">Скилы</p>
+        </div>
+    </div><!--
+    --><div class="page__character">
+        <div class="page__character-promo">
+                <p class="text">Promo Character</p>
+        </div>
+        <button class="change-character">Изменить персонажа</button>
+        <div class="page__related">
+                <div class="page__subscribe">
+                <p class="text">Подписки</p>
+                </div>
+                <div class="page__bookmark">
+                <p class="text">Закладки</p>
+                </div>
+        </div>
+    </div>
+    </div>
+    <div class="page__right-column">
+    <div class="page__info-character">
+        <p class="text">Инфа о персе</p>
+        <button class="change-profile">Редактировать профиль</button>
+    </div>
+    <div class="wrap-blog">
+        <div class="page__blog">
+        <div class="page__blog-content">
+            <p class="text">
+                {% if user.is_authenticated %}
+                    {% if user_posts %}
+                        {% for post in user_posts %}
+                        <h5>{{post.post_date}}</h5>
+                        <b><p>{{post.post_text}}</p></b>
+                        <br>
+                        {% endfor %}
+                    {% else %}
+                        Бложек пока пуст
+                    {% endif %}
+                {% endif %}
+            </p>
+        </div>
+        </div><!--
+        --><div class="page__same-character">
+        <div class="page__same-character-content">
+                <p class="text">Похожие долбаебы</p>
+        </div>
+        </div>
+    </div>
+    </div>
+
 
     {% if error_message %}
         <strong><p>{{error_message}}</p></strong>
     {% endif %}
 
-    {% if user.is_authenticated %}
-    Ну тут короче профиль чувака будет!!
-    {% else %}
-
-    
-    {% endif %}
 
 
 {% endblock %}

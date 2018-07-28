@@ -1,0 +1,119 @@
+.page, .text {
+    padding: 0;
+    margin: 0;
+ }
+
+ .text {
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+ }
+
+ .page__left-column, .page__right-column {
+    height: 100vh;
+ }
+
+ .page__left-column {
+    float: left;
+    background-color: darkblue;
+    width: 35%;
+ }
+
+ .page__right-column {
+    float: right;
+    background-color: darkcyan;
+    width: 65%;
+ }
+
+ .page__skill {
+    background-color: brown;
+    height: 100%;
+    float: left;
+ }
+
+ .page__skill-content {
+    margin: 10px;
+    padding: 10px;
+ }
+
+ .page__skill, .page__character {
+    width: 50%;
+ }
+
+ .page__character {
+    float: right;
+    text-align: center;
+ }
+
+ .page__character-promo {
+    /* margin: 10px; */
+    margin-bottom: 5px;
+    /* padding: 10px; */
+    height: 400px;
+    background-color: gold;
+ }
+
+ .change-character, .change-profile {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #333;
+    padding: 10px 5px;
+    color: #fff;
+ }
+ 
+ .page__related {
+    margin: 10px;
+ }
+
+ .page__subscribe, .page__bookmark {
+    padding: 10px;
+    height: calc((100vh - 500px - 37px) / 2);
+ }
+
+ .page__subscribe {
+    background-color: violet;
+ }
+ 
+ .page__bookmark {
+    background-color: forestgreen;
+ }
+
+ .page__info-character {
+    min-height: 100px;
+    background-color: darkgray;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+ }
+
+ .wrap-blog {
+    height: calc(100vh - 440px);
+ }
+
+ .page__blog {
+    float: left;
+    width: 70%;
+ }
+
+ .page__same-character {
+    width: 30%;
+    float: right;
+ }
+
+ .page__blog-content {
+    padding: 10px;
+    margin: 10px;
+    background-color: darkolivegreen;
+    height: calc(100vh - 300px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+ }
+
+ .page__same-character-content {
+    padding: 10px;
+    margin: 10px;
+    background-color: darkkhaki;
+    height: calc(100vh - 480px);
+ }

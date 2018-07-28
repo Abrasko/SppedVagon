@@ -57,8 +57,13 @@ def vote(request, question_id):
         pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "You didn't select the choice(.",
+            'question_detail': question,
+            'error_message': "You didnt select the choice(.",
+        })
+    except:
+        return render(request, 'polls/detail.html', {
+            'question_detail': question,
+            'error_message': "Unknown error(",
         })
     else:
         selected_choice.votes += 1

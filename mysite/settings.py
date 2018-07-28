@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    '192.168.0.102',
+    'testserver',
+    '37.147.77.31',
 ]
 
 
@@ -75,7 +78,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
-#sdassdadadasdasd
+# sdassdadadasdasd
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -126,4 +129,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    ("charimg", os.path.join(BASE_DIR, "charimg")),
+]
+
 AUTH_USER_MODEL = 'login.User_based'
+
+MIN_PASSWORD_LENGTH = 3

@@ -1,4 +1,36 @@
 {
+    "python.venvPath": "C:\\Envs",
+    "python.pythonPath": "C:\\Envs\\env1\\Scripts\\python.exe",
+    "python.linting.pylintPath": "C:\\Envs\\env1\\Scripts\\pylint.exe",
+    "python.formatting.autopep8Path": "C:\\Envs\\env1\\Scripts\\autopep8.exe",
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "C:\\env1\\Scripts\\python.exe"
+    "python.linting.pep8Enabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+    ],
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true
+    },
+    "workbench.editor.enablePreview": false,
+    // "files.associations": {
+    //     "**/templates/*.html": "django-html",
+    //     "**/templates/*": "django-txt",
+    //     "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    // },
+    // "emmet.includeLanguages": {
+    //     "django-html": "html"
+    // },
 }

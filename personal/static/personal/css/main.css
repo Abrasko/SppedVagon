@@ -64,16 +64,20 @@ header#header {
   position: static;
   padding-left: 170px;
   padding-top: 10px; }
-  #content img {
+  /* #content img {
     width: 60px;
     height: 60px;
-  }
+  } */
 /* наследование от content */
   #content-no-left {
     margin-right: auto;
     position: static;
     padding-top: 100px; }
-    #content img {
+    /* #content img {
       width: 60px;
       height: 60px;
-    }
+    } */
+strong {
+  color: rgb(238, 93, 36);
+}
+

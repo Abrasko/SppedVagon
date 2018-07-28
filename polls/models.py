@@ -8,7 +8,7 @@ class Question(models.Model):
 
     def was_published_recently(self):
         now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.date <= now
+        return now - datetime.timedelta(hours=1) <= self.date <= now
 
     was_published_recently.admin_order_field = 'date'
     was_published_recently.boolean = True

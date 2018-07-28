@@ -7,7 +7,12 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from .models import User_based as User
 # Register your models here.
 
-from mychar.models import UserSettingsList, UserSkillsList, UserSubscribesList
+from mychar.models import UserSettingsList, UserSkillsList, UserSubscribesList, CharPost
+
+class CharPostInline(admin.TabularInline):
+    model = CharPost
+    extra = 1
+    classes = ('collapse',)
 
 class UserSettingsListInline(admin.TabularInline):
     model = UserSettingsList

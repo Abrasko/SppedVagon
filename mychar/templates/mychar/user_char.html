@@ -1,0 +1,89 @@
+{% extends "personal/header.html" %} {% block content %} {% load staticfiles %}
+<div class="page__left-column">
+    <div class="page__skill">
+        <div class="page__skill-content">
+            <p class="text">Скилы</p>
+        </div>
+    </div>
+    <!--
+    -->
+    <div class="page__character">
+        <div class="page__character-promo">
+            <p class="text">
+                <img {% if user_char_photo %} src="{% static user_char_photo.image.url %}" {% else %} src="{% static 'charimg/none/putin.jpg' %}"
+                    {% endif %} style="max-height: 400px; max-width:100%">
+            </p>
+        </div>
+        {% if own_flag %}
+        <a href='/char/upload/' style='color: red'>
+            <button class="change-character">Изменить персонажа</button>
+        </a>
+        {% endif %}
+        <div class="page__related">
+            <div class="page__subscribe">
+                <p class="text">Подписки</p>
+            </div>
+            <div class="page__bookmark">
+                <p class="text">Закладки</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page__right-column">
+    {% if error_message %}
+    <strong>
+        <p>{{error_message}}</p>
+    </strong>
+    {% endif %}
+    <div class="page__info-character">
+        <p class="text">
+            <hr> Public name: {{user_char.public_name}}
+            <br> Email: {{user_char.user_email}}
+            <hr>
+        </p>
+        {% if own_flag %}
+        <a href='/char/edit/' style='color: red'>
+            <button class="change-character">Редактировать профиль</button>
+        </a>
+        {% endif %}
+    </div>
+    <div class="wrap-blog">
+        <div class="page__blog">
+            <!-- {% if not own_flag %} style="width: 100%" {% endif %} -->
+            <div class="page__blog-content">
+                <p class="text">
+                    {% if own_flag %}
+                    <p>Что-то высрать:</p>
+                    <form action="" method="post">
+                        {% csrf_token %} {% for field in form %}
+                        <div class="fieldWrapper">
+                            {{ field.errors }} {{ field.label_tag }} {{ field }} {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        <input type="submit" value="Submit" />
+                    </form>
+                    {% endif %}
+                    <hr> {% if user_char_posts %} {% for post in user_char_posts %}
+                    <h5>{{post.post_date}}</h5>
+                    <b>
+                        <p>{{post.post_text}}</p>
+                    </b>
+                    <br> {% endfor %} {% else %} Бложек пока пуст {% endif %}
+                </p>
+            </div>
+        </div>
+        <!--
+        -->
+        <div class="page__same-character">
+            <div class="page__same-character-content">
+                <p class="text">Случайные долбаебы</p>
+                <hr> {% for user in random_users_list %}
+                <a href='/char/{{user.id}}'>{{user.public_name}}</a>
+                <hr> {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
